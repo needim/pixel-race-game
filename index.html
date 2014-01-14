@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:fb="http://ogp.me/ns/fb#">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>PIXEL RACE</title>
+    <title>pixel race</title>
     <meta name='description' content='PIXEL RACE GAME FOR FUN'/>
     <meta name='keywords' content='html5, game, impactjs, pixel, race, racing'/>
     <meta name="author" content="Nedim Arabacı"/>
@@ -141,6 +141,14 @@
             text-decoration: none;
         }
 
+        div.fb-cont {
+            padding: 3px 0
+        }
+        div.fb-cont, div.tw-cont {
+            display: inline-block;
+            overflow: hidden;
+        }
+
         /* http://codepen.io/spevv/pen/fjxBi */
         .spinner {
             display: inline-block;
@@ -179,9 +187,17 @@
         }
     </style>
 
-    <script type="text/javascript" src="home.js"></script>
 </head>
 <body>
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=198259823578303";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
 
 <div class="wrapper">
 
@@ -196,6 +212,23 @@
             <a class="play" href="game.html">PLAY</a>
         </p>
 
+        <div class="social-cont">
+            <div class="tw-cont">
+                <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://ned.im/pixel-race-game/" data-via="needim" data-related="needim" data-hashtags="pixelracegame">Tweet</a>
+                <script>!function (d, s, id) {
+                        var js, fjs = d.getElementsByTagName(s)[0];
+                        if (!d.getElementById(id)) {
+                            js = d.createElement(s);
+                            js.id = id;
+                            js.src = "//platform.twitter.com/widgets.js";
+                            fjs.parentNode.insertBefore(js, fjs);
+                        }
+                    }(document, "script", "twitter-wjs");</script>
+            </div>
+            <div class="fb-cont">
+                <fb:share-button href="http://ned.im/pixel-race-game" type="button_count"></fb:share-button>
+            </div>
+        </div>
 
         <p><a class="built-with" target="_blank" href="http://impactjs.com">Built with IMPACT</a></p>
 
