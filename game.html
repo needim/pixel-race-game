@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>PIXEL RACE</title>
+    <meta name='description' content='PIXEL RACE GAME FOR FUN'/>
+    <meta name='keywords' content='html5, game, impactjs, pixel, race, racing'/>
+    <meta name="author" content="Nedim Arabacı"/>
+    <meta name="copyright" content="&copy; Copyright 2014"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <script type="text/javascript">
+        var Clay = Clay || {};
+        Clay.gameKey = "pixelrace";
+        Clay.readyFunctions = [];
+        Clay.ready = function (fn) {
+            Clay.readyFunctions.push(fn);
+        };
+        (function () {
+            var clay = document.createElement("script");
+            clay.async = true;
+            clay.src = ( "https:" == document.location.protocol ? "https://" : "http://" ) + "clay.io/api/api.js";
+            var tag = document.getElementsByTagName("script")[0];
+            tag.parentNode.insertBefore(clay, tag);
+        })();
+    </script>
+
+    <link rel="stylesheet" href="webfonts/font.css"/>
+
+    <style type="text/css">
+        html, body {
+            background-color: #000;
+            color: #fff;
+            font-family: helvetica, arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            font-size: 12pt;
+        }
+
+        #frame {
+            width: 320px;
+            height: 600px;
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+            -webkit-perspective: 100px;
+            -moz-perspective: 100px;
+            -o-perspective: 100px;
+            -ms-perspective: 100px;
+            perspective: 100px;
+            -webkit-perspective-origin: 100%, 100%;
+            -moz-perspective-origin: 100%, 100%;
+            -o-perspective-origin: 100%, 100%;
+            -ms-perspective-origin: 100%, 100%;
+            perspective-origin: 100%, 100%;
+            -webkit-transform: rotateX(10deg) rotateY(0deg) rotateZ(0deg);
+            -moz-transform: rotateX(10deg) rotateY(0deg) rotateZ(0deg);
+            -o-transform: rotateX(10deg) rotateY(0deg) rotateZ(0deg);
+            -ms-transform: rotateX(10deg) rotateY(0deg) rotateZ(0deg);
+            transform: rotateX(10deg) rotateY(0deg) rotateZ(0deg);
+        }
+
+        #canvas {
+            border: 3px solid #dedede;
+            -webkit-perspective: 100px;
+            -moz-perspective: 100px;
+            -o-perspective: 100px;
+            -ms-perspective: 100px;
+            perspective: 100px;
+            -webkit-perspective-origin: 100%, 100%;
+            -moz-perspective-origin: 100%, 100%;
+            -o-perspective-origin: 100%, 100%;
+            -ms-perspective-origin: 100%, 100%;
+            perspective-origin: 100%, 100%;
+            -webkit-transform: rotateX(10deg) rotateY(0deg) rotateZ(0deg);
+            -moz-transform: rotateX(10deg) rotateY(0deg) rotateZ(0deg);
+            -o-transform: rotateX(10deg) rotateY(0deg) rotateZ(0deg);
+            -ms-transform: rotateX(10deg) rotateY(0deg) rotateZ(0deg);
+            transform: rotateX(10deg) rotateY(0deg) rotateZ(0deg);
+        }
+
+        .clay-notification {
+            border: 1px solid #000 !important;
+            background-color: #000 !important;
+            border-radius: 0 !important;
+            box-shadow: none !important;
+        }
+
+        .clay-notification-header, .clay-notification-content {
+            border-radius: 0 !important;
+            font-family: BitBold, Helvetica, Arial, sans-serif !important;
+        }
+
+        a.leaderboard {
+            font-family: BitBold, Helvetica, Arial, sans-serif !important;
+            display: inline-block;
+            padding: 10px 20px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            text-decoration: none;
+            color: #fff;
+        }
+
+    </style>
+
+    <script type="text/javascript" src="game.min.js"></script>
+</head>
+<body>
+<a class="leaderboard" href="index.html">&larr; HIGHSCORES</a>
+
+<div id="frame">
+    <canvas id="canvas"></canvas>
+</div>
+</body>
+</html>

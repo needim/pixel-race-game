@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>PIXEL RACE</title>
+    <meta name='description' content='PIXEL RACE GAME FOR FUN'/>
+    <meta name='keywords' content='html5, game, impactjs, pixel, race, racing'/>
+    <meta name="author" content="Nedim Arabacı"/>
+    <meta name="copyright" content="&copy; Copyright 2014"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <script type="text/javascript" src="jquery-1.10.2.min.js"></script>
+
+    <script type="text/javascript">
+        var Clay = Clay || {};
+        Clay.gameKey = "pixelrace";
+        Clay.readyFunctions = [];
+        Clay.ready = function (fn) {
+            Clay.readyFunctions.push(fn);
+        };
+        (function () {
+            var clay = document.createElement("script");
+            clay.async = true;
+            clay.src = ( "https:" == document.location.protocol ? "https://" : "http://" ) + "clay.io/api/api.js";
+            var tag = document.getElementsByTagName("script")[0];
+            tag.parentNode.insertBefore(clay, tag);
+        })();
+    </script>
+
+    <script type="text/javascript">
+        $(function () {
+            var $highscores = $('ul.highscores');
+
+            Clay.ready(function () {
+
+                var leaderboard = new Clay.Leaderboard({ id: 2618 });
+                leaderboard.fetch({ limit: 25, getRank: true }, function (results) {
+                    console.log(results);
+                    $('.spinner').remove();
+                    $.each(results.data, function (i, s) {
+                        if (s.score) {
+                            var suffix = s.me ? ' me' : '';
+                            var $li = $('<li class="' + suffix + '"/>').append($('<span class="name" title="' + s.time + '" />').html(s.name + '<span class="score">' + s.score + '</span>'));
+                            $highscores.append($li);
+                        }
+                    });
+                });
+
+            });
+        });
+    </script>
+
+    <link rel="stylesheet" href="webfonts/font.css"/>
+    <style type="text/css">
+        html, body {
+            background-color: #fff;
+            color: #444;
+            font-family: BitBold, Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            font-size: 10pt;
+            height: 100%;
+            width: 100%;
+        }
+
+        .wrapper {
+            width: 940px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 30px 0;
+            height: 100%;
+        }
+
+        h1 {
+            font-size: 18px;
+            color: #F35064;
+        }
+
+        div.inner {
+            padding: 20px
+        }
+
+        a.play {
+            margin-top: 20px;
+            display: inline-block;
+            border: 1px solid #F35064;
+            padding: 10px 24px 7px 24px;
+            text-decoration: none;
+            background-color: #F35064;
+            color: #fff;
+        }
+
+        a.play:hover {
+            border: 1px solid #F35064;
+            color: #F35064;
+            background-color: #fff;
+        }
+
+        ul.highscores {
+            list-style: decimal;
+            margin: 0 auto;
+            padding: 0;
+            max-width: 250px;
+            text-align: left;
+        }
+
+        ul.highscores li {
+            padding: 8px 5px 5px 5px;
+            border-bottom: 1px dotted #dedede;
+        }
+
+        ul.highscores li span.name {
+            text-decoration: none;
+            display: block;
+            color: #1A96D8;
+        }
+
+        ul.highscores li.me {
+            background-color: #efefef;
+            border-right: 2px solid #dedede;
+        }
+
+        ul.highscores li span.score {
+            display: inline-block;
+            float: right;
+            color: #444;
+        }
+
+        .poweredby {
+            font-size: 9px;
+            color: #777;
+            display: block;
+        }
+
+        .built-with {
+            font-size: 9px;
+            color: #777;
+            text-decoration: none;
+        }
+
+        /* http://codepen.io/spevv/pen/fjxBi */
+        .spinner {
+            display: inline-block;
+            width: 15px;
+            height: 15px;
+            background-color: #333;
+            -webkit-animation: rotateplane 1.2s infinite ease-in-out;
+            animation: rotateplane 1.2s infinite ease-in-out;
+        }
+
+        @-webkit-keyframes rotateplane {
+            0% {
+                -webkit-transform: perspective(120px)
+            }
+            50% {
+                -webkit-transform: perspective(120px) rotateY(180deg)
+            }
+            100% {
+                -webkit-transform: perspective(120px) rotateY(180deg) rotateX(180deg)
+            }
+        }
+
+        @keyframes rotateplane {
+            0% {
+                transform: perspective(120px) rotateX(0deg) rotateY(0deg);
+                -webkit-transform: perspective(120px) rotateX(0deg) rotateY(0deg)
+            }
+            50% {
+                transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
+                -webkit-transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg)
+            }
+            100% {
+                transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+                -webkit-transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+            }
+        }
+    </style>
+
+    <script type="text/javascript" src="home.js"></script>
+</head>
+<body>
+
+<div class="wrapper">
+
+    <div class="inner">
+        <h1>PIXEL RACE GAME</h1>
+
+        <p>I BUILT THIS GAME FOR A SHORT TIME FUN!</p>
+        <small>...and it's a little hard to play, but have fun :)</small>
+        <br><br><br>
+
+        <p>
+            <a class="play" href="game.html">PLAY</a>
+        </p>
+
+
+        <p><a class="built-with" target="_blank" href="http://impactjs.com">Built with IMPACT</a></p>
+
+    </div>
+
+    <div class="inner highscores">
+        <h1>HIGHSCORES <span class="poweredby">powered by clay.io</span></h1>
+
+        <div class="spinner"></div>
+        <ul class="highscores">
+        </ul>
+    </div>
+
+</div>
+
+</body>
+</html>
