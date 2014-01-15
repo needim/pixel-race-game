@@ -14,7 +14,7 @@
 
     <script type="text/javascript" src="jquery-1.10.2.min.js"></script>
 
-    <script type="text/javascript">
+    <!--<script type="text/javascript">
         var Clay = Clay || {};
         Clay.gameKey = "pixelrace";
         Clay.readyFunctions = [];
@@ -28,13 +28,13 @@
             var tag = document.getElementsByTagName("script")[0];
             tag.parentNode.insertBefore(clay, tag);
         })();
-    </script>
+    </script>-->
 
     <script type="text/javascript">
         $(function () {
             var $highscores = $('ul.highscores');
 
-            Clay.ready(function () {
+            /*Clay.ready(function () {
 
                 var leaderboard = new Clay.Leaderboard({ id: 2618 });
                 leaderboard.fetch({ limit: 25, getRank: true }, function (results) {
@@ -49,7 +49,7 @@
                     });
                 });
 
-            });
+            });*/
         });
     </script>
 
@@ -236,8 +236,8 @@
 
     <div class="inner highscores">
         <h1>HIGHSCORES <span class="poweredby">powered by clay.io</span></h1>
-
-        <div class="spinner"></div>
+        <span class="poweredby">Clay.io had some issues, so highscores not available for now.</span>
+        <!--<div class="spinner"></div>-->
         <ul class="highscores">
         </ul>
     </div>
