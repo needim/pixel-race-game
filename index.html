@@ -20,7 +20,7 @@
             var $highscores = $('ul.highscores');
             var $all_highscores = $('ul.all-highscores');
 
-            $.post("https://api.scoreoid.com/v1/getBestScores", {api_key: "d514b2a9fdd2b074c4badfd8f54205c38fd235d2", game_id: "474bf8533c", response: "JSON", limit: 25},
+            $.post("https://api.scoreoid.com/v1/getBestScores", {api_key: "d514b2a9fdd2b074c4badfd8f54205c38fd235d2", game_id: "474bf8533c", response: "JSON", limit: 25, order_by: 'score'},
                     function(data) {
 
                         var username = store.get('username');
@@ -35,7 +35,7 @@
                         });
                     });
 
-            $.post("https://api.scoreoid.com/v1/getScores", {api_key: "d514b2a9fdd2b074c4badfd8f54205c38fd235d2", game_id: "474bf8533c", response: "JSON", limit: 25},
+            $.post("https://api.scoreoid.com/v1/getScores", {api_key: "d514b2a9fdd2b074c4badfd8f54205c38fd235d2", game_id: "474bf8533c", response: "JSON", limit: 25, order_by: 'score'},
                     function(data) {
 
                         var username = store.get('username');
