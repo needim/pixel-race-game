@@ -13,43 +13,42 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
 
     <script type="text/javascript" src="jquery-1.10.2.min.js"></script>
-
-    <!--<script type="text/javascript">
-        var Clay = Clay || {};
-        Clay.gameKey = "pixelrace";
-        Clay.readyFunctions = [];
-        Clay.ready = function (fn) {
-            Clay.readyFunctions.push(fn);
-        };
-        (function () {
-            var clay = document.createElement("script");
-            clay.async = true;
-            clay.src = ( "https:" == document.location.protocol ? "https://" : "http://" ) + "clay.io/api/api.js";
-            var tag = document.getElementsByTagName("script")[0];
-            tag.parentNode.insertBefore(clay, tag);
-        })();
-    </script>-->
+    <script type="text/javascript" src="store.min.js"></script>
 
     <script type="text/javascript">
         $(function () {
             var $highscores = $('ul.highscores');
+            var $all_highscores = $('ul.all-highscores');
 
-            /*Clay.ready(function () {
+            $.post("https://api.scoreoid.com/v1/getBestScores", {api_key: "d514b2a9fdd2b074c4badfd8f54205c38fd235d2", game_id: "474bf8533c", response: "JSON", limit: 25},
+                    function(data) {
 
-                var leaderboard = new Clay.Leaderboard({ id: 2618 });
-                leaderboard.fetch({ limit: 25, getRank: true }, function (results) {
-                    console.log(results);
-                    $('.spinner').remove();
-                    $.each(results.data, function (i, s) {
-                        if (s.score) {
-                            var suffix = s.me ? ' me' : '';
-                            var $li = $('<li class="' + suffix + '"/>').append($('<span class="name" title="' + s.time + '" />').html(s.name + '<span class="score">' + s.score + '</span>'));
-                            $highscores.append($li);
-                        }
+                        var username = store.get('username');
+
+                        $('.spinner').remove();
+                        $.each(data, function (i, s) {
+                            if (s.Player) {
+                                var isMe = username == s.Player.username ? 'me': '';
+                                var $li = $('<li class="'+isMe+'"/>').append($('<span class="name" title="' + s.Score.created + '" />').html(s.Player.username + '<span class="score">' + s.Score.score + '</span>'));
+                                $highscores.append($li);
+                            }
+                        });
                     });
-                });
 
-            });*/
+            $.post("https://api.scoreoid.com/v1/getScores", {api_key: "d514b2a9fdd2b074c4badfd8f54205c38fd235d2", game_id: "474bf8533c", response: "JSON", limit: 25},
+                    function(data) {
+
+                        var username = store.get('username');
+
+                        $('.spinner').remove();
+                        $.each(data, function (i, s) {
+                            if (s.Player) {
+                                var isMe = username == s.Player.username ? 'me': '';
+                                var $li = $('<li class="'+isMe+'"/>').append($('<span class="name" title="' + s.Score.created + '" />').html(s.Player.username + '<span class="score">' + s.Score.score + '</span>'));
+                                $all_highscores.append($li);
+                            }
+                        });
+                    });
         });
     </script>
 
@@ -99,31 +98,31 @@
             background-color: #fff;
         }
 
-        ul.highscores {
+        .highscores ul {
             list-style: decimal;
             margin: 0 auto;
             padding: 0;
-            max-width: 250px;
+            max-width: 350px;
             text-align: left;
         }
 
-        ul.highscores li {
+        .highscores li {
             padding: 8px 5px 5px 5px;
             border-bottom: 1px dotted #dedede;
         }
 
-        ul.highscores li span.name {
+        .highscores li span.name {
             text-decoration: none;
             display: block;
             color: #1A96D8;
         }
 
-        ul.highscores li.me {
+        .highscores li.me {
             background-color: #efefef;
             border-right: 2px solid #dedede;
         }
 
-        ul.highscores li span.score {
+        .highscores li span.score {
             display: inline-block;
             float: right;
             color: #444;
@@ -235,10 +234,16 @@
     </div>
 
     <div class="inner highscores">
-        <h1>HIGHSCORES <span class="poweredby">powered by clay.io</span></h1>
-        <span class="poweredby">Clay.io had some issues, so highscores not available for now.</span>
-        <!--<div class="spinner"></div>-->
+        <h1>BEST HIGHSCORES <span class="poweredby">powered by scoreoid</span></h1>
+        <div class="spinner"></div>
         <ul class="highscores">
+        </ul>
+    </div>
+
+    <div class="inner highscores">
+        <h1>ALL HIGHSCORES <span class="poweredby">powered by scoreoid</span></h1>
+        <div class="spinner"></div>
+        <ul class="all-highscores">
         </ul>
     </div>
 

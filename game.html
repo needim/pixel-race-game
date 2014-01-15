@@ -12,23 +12,43 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
 
-    <!--<script type="text/javascript">
-        var Clay = Clay || {};
-        Clay.gameKey = "pixelrace";
-        Clay.readyFunctions = [];
-        Clay.ready = function (fn) {
-            Clay.readyFunctions.push(fn);
-        };
-        (function () {
-            var clay = document.createElement("script");
-            clay.async = true;
-            clay.src = ( "https:" == document.location.protocol ? "https://" : "http://" ) + "clay.io/api/api.js";
-            var tag = document.getElementsByTagName("script")[0];
-            tag.parentNode.insertBefore(clay, tag);
-        })();
-    </script>-->
-
     <link rel="stylesheet" href="webfonts/font.css"/>
+    <script type="text/javascript" src="store.min.js"></script>
+    <script type="text/javascript" src="jquery-1.10.2.min.js"></script>
+
+    <script type="text/javascript">
+        $(function () {
+            var username = store.get('username');
+            var $userinfo = $('.userinfo');
+
+            if (typeof username == 'undefined') {
+                $userinfo.show();
+            } else {
+                $('.loggeduser').html('Logged as: ' + username).fadeIn();
+            }
+
+            $('#name-submit').on('click', function(e) {
+                var name = $('input#name').val();
+                name = (name.length < 1) ? 'guest' : name;
+                if (name == 'guest')
+                    name += '_' + (new Date()).getTime();
+
+                store.set('username', name);
+                $userinfo.hide();
+                $('.loggeduser').html('Logged as: ' + store.get('username')).fadeIn();
+                e.preventDefault();
+                return false;
+            });
+
+            $('#guest').on('click', function(e) {
+                store.set('username', 'guest_'+(new Date()).getTime());
+                $userinfo.hide();
+                $('.loggeduser').html('Logged as: '+ store.get('username')).fadeIn();
+                e.preventDefault();
+                return false;
+            });
+        });
+    </script>
 
     <style type="text/css">
         html, body {
@@ -102,10 +122,86 @@
             display: inline-block;
             padding: 10px 20px;
             position: fixed;
+            z-index: 1237223;
             top: 0;
             left: 0;
             text-decoration: none;
             color: #fff;
+        }
+
+        .userinfo {
+            font-family: BitBold, Helvetica, Arial, sans-serif !important;
+            background-color: rgba(255,255,255,1);
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            z-index: 1237123;
+            text-align: center;
+            color: #777;
+            display: none
+        }
+
+        .loggeduser {
+            font-family: BitBold, Helvetica, Arial, sans-serif !important;
+            position: fixed;
+            z-index: 1237123;
+            text-align: center;
+            display: none;
+            height: 20px;
+            border-bottom: 1px solid #fff;
+            width: 100%;
+            top: 5px;
+            padding-top: 5px;
+        }
+
+        .userinfo .form {
+            padding-top: 40px;
+        }
+
+        .userinfo input#name {
+            border: 2px solid #777;
+            font-family: BitBold, Helvetica, Arial, sans-serif !important;
+            font-size: 30px;
+            line-height: 30px;
+            padding: 10px 30px 6px 30px;
+            text-align: center;
+        }
+
+        .userinfo input#name-submit {
+            margin-top: 20px;
+            display: inline-block;
+            border: 1px solid #F35064;
+            padding: 10px 24px 7px 24px;
+            text-decoration: none;
+            background-color: #F35064;
+            color: #fff;
+            font-family: BitBold, Helvetica, Arial, sans-serif !important;
+            cursor: pointer;
+        }
+
+        .userinfo input#name-submit:hover {
+            border: 1px solid #F35064;
+            color: #F35064;
+            background-color: #fff;
+        }
+
+        .userinfo input#guest {
+            font-family: BitBold, Helvetica, Arial, sans-serif !important;
+            margin-top: 20px;
+            display: inline-block;
+            border: 1px solid #dedede;
+            background-color: #efefef;
+            padding: 10px 24px 7px 24px;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .userinfo input#guest:hover {
+            background-color: #fff;
+        }
+
+        span.or {
+            font-size: 10px
         }
 
     </style>
@@ -115,6 +211,16 @@
     <script type="text/javascript" src="game.min.js"></script>
 </head>
 <body>
+<div class="loggeduser"></div>
+<div class="userinfo">
+    <div class="form">
+        <h2>Username for Leaderboards</h2>
+        <input id="name" type="text" value="" placeholder="Username"/><br>
+        <input type="button" id="name-submit" value="submit"/> <span class="or">or</span>
+        <input type="button" id="guest" value="login as a guest"/>
+    </div>
+</div>
+
 <a class="leaderboard" href="index.html">&larr; HIGHSCORES</a>
 
 <div id="frame">
