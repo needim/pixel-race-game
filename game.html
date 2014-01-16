@@ -222,9 +222,15 @@
 
     </style>
 
-    <!--<script type="text/javascript" src="lib/impact/impact.js"></script>
-    <script type="text/javascript" src="lib/pixel-race.js"></script>-->
-    <script type="text/javascript" src="game.min.js"></script>
+    <script>
+        if (location.host == 'dev.pixelrace.com') {
+            document.write('<script src="lib/impact/impact.js"><\/script>');
+            document.write('<script src="lib/pixel-race.js"><\/script>');
+            console.log('DEV MODE: ON');
+        } else {
+            document.write('<script src="game.min.js"><\/script>')
+        }
+    </script>
 </head>
 <body>
 <div class="loggeduser"></div>
