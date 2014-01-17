@@ -63,6 +63,46 @@
                 e.preventDefault();
                 return false;
             });
+
+            var musicState = store.get('musicState') || 'on';
+            var soundState = store.get('soundState') || 'on';
+
+            var $musicStateContainer = $('.volumes .music .state');
+            var $soundStateContainer = $('.volumes .sound .state');
+
+            $musicStateContainer.html(musicState);
+            $soundStateContainer.html(soundState);
+
+            console.log(musicState, soundState);
+
+            $('.music').on('click', function(e) {
+                var musicState = store.get('musicState') || 'on';
+                if (musicState == 'on') {
+                    store.set('musicState', 'off');
+                    $musicStateContainer.html('off');
+                } else {
+                    store.set('musicState', 'on');
+                    $musicStateContainer.html('on');
+                }
+
+                e.preventDefault();
+                return false;
+            });
+
+            $('.sound').on('click', function(e) {
+                var soundState = store.get('soundState') || 'on';
+                if (soundState == 'on') {
+                    store.set('soundState', 'off');
+                    $soundStateContainer.html('off');
+                } else {
+                    store.set('soundState', 'on');
+                    $soundStateContainer.html('on');
+                }
+
+                e.preventDefault();
+                return false;
+            });
+
         });
     </script>
 
@@ -143,6 +183,23 @@
             left: 0;
             text-decoration: none;
             color: #fff;
+        }
+
+        .volumes {
+            font-family: BitBold, Helvetica, Arial, sans-serif !important;
+            display: inline-block;
+            padding: 10px 20px;
+            position: fixed;
+            z-index: 1237223;
+            top: 0;
+            right: 0;
+            text-decoration: none;
+            color: #fff;
+        }
+
+        .volumes .music:hover, .volumes .sound:hover {
+            color: yellow;
+            cursor: pointer;
         }
 
         .userinfo {
@@ -244,6 +301,18 @@
 </div>
 
 <a class="leaderboard" href="http://ned.im/pixel-race-game">&larr; HIGHSCORES</a>
+
+<div class="volumes">
+
+    <span class="music">
+        MUSIC: <span class="state"></span>
+    </span>
+
+    <span class="sound">
+        SOUND: <span class="state"></span>
+    </span>
+
+</div>
 
 <div id="frame">
     <canvas id="canvas"></canvas>
