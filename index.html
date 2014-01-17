@@ -41,9 +41,8 @@
                 var leaderboard = new Clay.Leaderboard({ id: 2618 });
                 var name = store.get('username');
 
-                leaderboard.fetch({ limit: 25, getRank: true }, function (results) {
-                    $('.spinner').remove();
-                    console.log(results.data);
+                leaderboard.fetch({ limit: 10, getRank: true, best: true }, function (results) {
+                    $('.spinner.best').remove();
                     $.each(results.data, function (i, s) {
                         if (s.score) {
                             var suffix = s.name == name ? 'me' : '';
@@ -52,6 +51,18 @@
                         }
                     });
                 });
+
+                leaderboard.fetch({ limit: 25, getRank: true}, function (results) {
+                    $('.spinner.all').remove();
+                    $.each(results.data, function (i, s) {
+                        if (s.score) {
+                            var suffix = s.name == name ? 'me' : '';
+                            var $li = $('<li class="' + suffix + '"/>').append($('<span class="name" title="' + s.time + '" />').html(s.name + '<span class="score">' + s.score + '</span>'));
+                            $all_highscores.append($li);
+                        }
+                    });
+                });
+
 
             });
         });
@@ -252,6 +263,10 @@
 
     <div class="inner changelog">
         <h1>Changelog</h1>
+        <h5>17.01.2014</h5>
+        <ul class="changelog">
+            <li>TOP 10 UNIQUE HIGHSCORE LIST ADDED</li>
+        </ul>
         <h5>16.01.2014</h5>
         <ul class="changelog">
             <li>More easy game play</li>
@@ -261,9 +276,16 @@
     </div>
 
     <div class="inner highscores">
-        <h1>HIGHSCORES <span class="poweredby">powered by clay.io</span></h1>
-        <div class="spinner"></div>
+        <h1>TOP 10 HIGHSCORES <span class="poweredby">powered by clay.io</span></h1>
+        <div class="spinner best"></div>
         <ul class="highscores">
+        </ul>
+    </div>
+
+    <div class="inner highscores">
+        <h1>ALL HIGHSCORES <span class="poweredby">powered by clay.io</span></h1>
+        <div class="spinner all"></div>
+        <ul class="all-highscores">
         </ul>
     </div>
 
