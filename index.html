@@ -45,9 +45,12 @@
                     $('.spinner.best').remove();
                     $.each(results.data, function (i, s) {
                         if (s.score) {
-                            var suffix = s.name == name ? 'me' : '';
-                            var $li = $('<li class="' + suffix + '"/>').append($('<span class="name" title="' + s.time + '" />').html(s.name + '<span class="score">' + s.score + '</span>'));
-                            $highscores.append($li);
+                            if (s.name != 'Omer' && s.name != 'vijk') {
+                                var suffix = s.name == name ? 'me' : '';
+                                var $li = $('<li class="' + suffix + '"/>').append($('<span class="name" title="' + s.time + '" />').html(s.name + '<span class="score">' + s.score + '</span>'));
+                                $highscores.append($li);
+                            }
+
                         }
                     });
                 });
@@ -56,9 +59,11 @@
                     $('.spinner.all').remove();
                     $.each(results.data, function (i, s) {
                         if (s.score) {
-                            var suffix = s.name == name ? 'me' : '';
-                            var $li = $('<li class="' + suffix + '"/>').append($('<span class="name" title="' + s.time + '" />').html(s.name + '<span class="score">' + s.score + '</span>'));
-                            $all_highscores.append($li);
+                            if (s.name != 'Omer' && s.name != 'vijk') {
+                                var suffix = s.name == name ? 'me' : '';
+                                var $li = $('<li class="' + suffix + '"/>').append($('<span class="name" title="' + s.time + '" />').html(s.name + '<span class="score">' + s.score + '</span>'));
+                                $all_highscores.append($li);
+                            }
                         }
                     });
                 });
