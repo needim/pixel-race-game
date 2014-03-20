@@ -41,32 +41,28 @@
                 var leaderboard = new Clay.Leaderboard({ id: 2618 });
                 var name = store.get('username');
 
-                leaderboard.fetch({ limit: 10, getRank: true, best: true }, function (results) {
+                leaderboard.fetch({ limit: 10, getRank: true, best: false }, function (results) {
                     $('.spinner.best').remove();
+                    console.log(results);
                     $.each(results.data, function (i, s) {
                         if (s.score) {
-                            if (s.name != 'Omer' && s.name != 'vijk') {
-                                var suffix = s.name == name ? 'me' : '';
-                                var $li = $('<li class="' + suffix + '"/>').append($('<span class="name" title="' + s.time + '" />').html(s.name + '<span class="score">' + s.score + '</span>'));
-                                $highscores.append($li);
-                            }
-
+                            var suffix = s.name == name ? 'me' : '';
+                            var $li = $('<li class="' + suffix + '"/>').append($('<span class="name" title="' + s.time + '" />').html(s.name + '<span class="score">' + s.score + '</span>'));
+                            $highscores.append($li);
                         }
                     });
                 });
 
-                leaderboard.fetch({ limit: 25, getRank: true}, function (results) {
-                    $('.spinner.all').remove();
-                    $.each(results.data, function (i, s) {
-                        if (s.score) {
-                            if (s.name != 'Omer' && s.name != 'vijk') {
-                                var suffix = s.name == name ? 'me' : '';
-                                var $li = $('<li class="' + suffix + '"/>').append($('<span class="name" title="' + s.time + '" />').html(s.name + '<span class="score">' + s.score + '</span>'));
-                                $all_highscores.append($li);
-                            }
-                        }
-                    });
-                });
+//                leaderboard.fetch({ limit: 25, getRank: true}, function (results) {
+//                    $('.spinner.all').remove();
+//                    $.each(results.data, function (i, s) {
+//                        if (s.score) {
+//                            var suffix = s.name == name ? 'me' : '';
+//                            var $li = $('<li class="' + suffix + '"/>').append($('<span class="name" title="' + s.time + '" />').html(s.name + '<span class="score">' + s.score + '</span>'));
+//                            $all_highscores.append($li);
+//                        }
+//                    });
+//                });
 
 
             });
