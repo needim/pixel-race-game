@@ -19,8 +19,8 @@ Warning: Don't play too much, it may cause side effects!
 Get the App
 =======
 
-[![appstore](http://dev.pixelrace.com/applestore.jpg)](https://itunes.apple.com/gb/app/pixel-race/id841405985)
+[![appstore](http://ned.im/pixel-race-game/applestore.jpg)](https://itunes.apple.com/gb/app/pixel-race/id841405985)
 
-[![googleplay](http://dev.pixelrace.com/google_play_icon.png)](https://play.google.com/store/apps/details?id=com.nebil.pixelrace)
+[![googleplay](http://ned.im/pixel-race-game/google_play_icon.png)](https://play.google.com/store/apps/details?id=com.nebil.pixelrace)
 
 **Web Play:** <http://ned.im/pixel-race-game>
